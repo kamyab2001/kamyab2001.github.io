@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Movie Details</title>
+    <link rel="stylesheet" type="text/css" href="syles.css">
+</head>
+<body>
+    <header>
+        <h1>Movie Details</h1>
+    </header>
+    <div id="clock"></div>
+
+<script>
+function updateClock() {
+    var now = new Date();
+    var day = now.toLocaleDateString();
+    var time = now.toLocaleTimeString();
+    document.getElementById('clock').textContent = day + ' ' + time;
+}
+setInterval(updateClock, 1000);
+updateClock();
+</script>
+
+    <nav>
+        <a href="website.html">Home</a> |
+        <a href="search.html">Search</a> |
+        <a href="movies.html">Movies</a>
+    </nav>
+    <button onclick="switchTheme()">Switch Theme</button>
+
+<script>
+function switchTheme() {
+    document.body.classList.toggle('theme2');
+    localStorage.setItem('theme', document.body.className);
+}
+
+window.onload = function() {
+    var theme = localStorage.getItem('theme');
+    if (theme) {
+        document.body.className = theme;
+    }
+};
+</script>
+<script>
+    document.getElementById('commentForm').addEventListener('submit', function(event) {
+        var name = this.elements['name'].value.trim();
+        var email = this.elements['email'].value.trim();
+        var comment = this.elements['comment'].value.trim();
+        if (name === '' || email === '' || comment === '') {
+            event.preventDefault();
+            document.getElementById('error').textContent = 'All fields are required.';
+        } else if (!/^[a-zA-Z\s]*$/.test(name)) {
+            event.preventDefault();
+            document.getElementById('error').textContent = 'Name can only contain alphabets and space.';
+        } else if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)) {
+            event.preventDefault();
+            document.getElementById('error').textContent = 'Please enter a valid email address.';
+        }
+    });
+    </script>
+    <main>
+        <h2>The marvels 2023</h2>
+        <img src="E:\ترم 7\مهندسی اینترنت\R.jpg" alt="The marvels 2023 Poster">
+        <p>Year: 2023</p>
+        <p>Genre: fictional</p>
+        <p>Director: Nia DaCosta</p>
+        <p>Country: United State</p>
+        <p>The Marvels is a 2023 American superhero film based on Marvel Comics.</p>
+        <p>Rating: 3.1</p>
+        <video src="E:\ترم 7\مهندسی اینترنت\Marvel Studios  The Marvels _ Official Trailer.mp4" controls></video>
+        <form id="commentForm">
+            <label for="rating">Rating:</label><br>
+            <input type="number" id="rating" name="rating" min="1" max="5"><br>
+            <label for="comment">Comment:</label><br>
+            <textarea id="comment" name="comment"></textarea><br>
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required><br>
+            <input type="submit" value="Submit">
+        </form>
+        <section>
+            <h3>Comments</h3>
+            <p>Mohammad: it was ok.</p>
+        </section>
+    </main>
+    <footer>
+        <p>© 2023 Movie cabin Website</p>
+    </footer>
+</body>
+</html>

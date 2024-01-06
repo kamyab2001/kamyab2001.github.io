@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Movies</title>
+    <link rel="stylesheet" type="text/css" href="syles.css">
+</head>
+<body>
+    <header>
+        <h1>Search Movies</h1>
+    </header>
+    <div id="clock"></div>
+
+<script>
+function updateClock() {
+    var now = new Date();
+    var day = now.toLocaleDateString();
+    var time = now.toLocaleTimeString();
+    document.getElementById('clock').textContent = day + ' ' + time;
+}
+setInterval(updateClock, 1000);
+updateClock();
+</script>
+
+    <nav>
+        <a href="website.html">Home</a> |
+        <a href="search.html">Search</a> |
+        <a href="movies.html">Movies</a>
+    </nav>
+    <script>
+        document.getElementById('searchForm').addEventListener('submit', function(event) {
+            var inputElements = this.elements;
+            var isValid = false;
+            for (var i = 0; i < inputElements.length; i++) {
+                if (inputElements[i].value.trim() !== '') {
+                    isValid = true;
+                    break;
+                }
+            }
+            if (!isValid) {
+                event.preventDefault();
+                document.getElementById('error').textContent = 'Please enter at least one attribute of the film.';
+                document.getElementById('error').style.color = 'red';
+            }
+        });
+        </script>
+            
+    <button onclick="switchTheme()">Switch Theme</button>
+
+<script>
+function switchTheme() {
+    document.body.classList.toggle('theme2');
+    localStorage.setItem('theme', document.body.className);
+}
+
+window.onload = function() {
+    var theme = localStorage.getItem('theme');
+    if (theme) {
+        document.body.className = theme;
+    }
+};
+</script>
+    <main>
+        <form id="searchForm">
+            <label for="name">Name:</label><br>
+            <input type="text" id="name" name="name"><br>
+            <label for="genre">Genre:</label><br>
+            <input type="text" id="genre" name="genre"><br>
+            <label for="year">Year of Production:</label><br>
+            <input type="text" id="year" name="year"><br>
+            <label for="director">Director:</label><br>
+            <input type="text" id="director" name="director"><br>
+            <label for="country">Country of Production:</label><br>
+            <input type="text" id="country" name="country"><br>
+            <input type="submit" value="Search">
+        </form>
+        <div id="error"></div>
+    </main>
+    <footer>
+        <p>© 2023 Movie cabin Website</p>
+    </footer>
+</body>
+</html>

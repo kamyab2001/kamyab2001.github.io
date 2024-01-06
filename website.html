@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="syles.css">
+    <title>Movie Introduction Website</title>
+</head>
+<body>
+    <header>
+        <h1>Welcome to movie cabin!</h1>
+    </header>
+    <nav>
+        <a href="website.html">Home</a> |
+        <a href="search.html">Search</a> |
+        <a href="movies.html">Movies</a>
+    </nav>
+    <div id="clock"></div>
+
+<script>
+function updateClock() {
+    var now = new Date();
+    var day = now.toLocaleDateString();
+    var time = now.toLocaleTimeString();
+    document.getElementById('clock').textContent = day + ' ' + time;
+}
+setInterval(updateClock, 1000);
+updateClock();
+</script>
+
+    <div id="slideshow">
+        <img src="E:\ترم 7\مهندسی اینترنت\SCREAM_SAlone_16_9_1920x1080_NB_1213724_1920x1080.jpg" alt="Scream 5 Poster">
+        <img src="E:\ترم 7\مهندسی اینترنت\R.jpg" alt="The Marvels 2023 Poster">
+        <img src="E:\ترم 7\مهندسی اینترنت\06-opp-dm-mobile-banner-1080x745-now-pl-f01-071223-64bab982784c7-1.jpg" alt="Oppenheimer Poster">
+    </div>
+    
+    <script>
+    var slideshowImages = document.getElementById('slideshow').children;
+    var currentImageIndex = 0;
+    setInterval(function() {
+        slideshowImages[currentImageIndex].style.display = 'none';
+        currentImageIndex = (currentImageIndex + 1) % slideshowImages.length;
+        slideshowImages[currentImageIndex].style.display = 'block';
+    }, 5000);
+    </script>
+    <button onclick="switchTheme()">Switch Theme</button>
+
+    <script>
+    function switchTheme() {
+        document.body.classList.toggle('theme2');
+        localStorage.setItem('theme', document.body.className);
+    }
+    
+    window.onload = function() {
+        var theme = localStorage.getItem('theme');
+        if (theme) {
+            document.body.className = theme;
+        }
+    };
+    </script>
+    
+    
+    <main>
+        <section>
+            <h2>Most Rated Movie: Scream 5</h2>
+            <a href="moviesD.html">
+            <img src="E:\ترم 7\مهندسی اینترنت\SCREAM_SAlone_16_9_1920x1080_NB_1213724_1920x1080.jpg" alt="Scream 5 Poster">
+            <p>A new Ghostface killer targets a group of teenagers in Woodsboro, 25 years after the original murders. </p>
+        </section>
+        <section>
+            <h2>Newest Movie: The Marvels 2023</h2>
+            <a href="moviesD2.html">
+            <img src="E:\ترم 7\مهندسی اینترنت\R.jpg" alt="The Marvels 2023 Poster">
+            <p>The Marvels is a 2023 American superhero film based on Marvel Comics.</p>
+        </section>
+        <section>
+            <h2>Most Commented Movie: Oppenheimer</h2>
+            <a href="moviesD3.html">
+            <img src="E:\ترم 7\مهندسی اینترنت\06-opp-dm-mobile-banner-1080x745-now-pl-f01-071223-64bab982784c7-1.jpg" alt="Oppenheimer Poster">
+            <p>The story of American scientist J. Robert Oppenheimer and his role in the development of the atomic bomb.</p>
+        </section>
+    </main>
+    <footer>
+        <p>© 2023 Movie cabin Website</p>
+    </footer>
+</body>
+</html>
